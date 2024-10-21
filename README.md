@@ -24,6 +24,8 @@ The **Smart Load Balancer** provides an **automated solution** to these challeng
 - **DynamoDB integration**: A DynamoDB table stores the **quota usage** and **last reset timestamp** for each endpoint.
 - **API Gateway integration**: The Lambda function is exposed through API Gateway, allowing users to invoke the Bedrock service seamlessly.
 
+Note: DynamoDB can be replaced with an in-memory db like ElastiCache.
+
 ### Workflow Overview:
 1. **Quota Management**: Each time a request is processed, the Lambda function checks the **last reset timestamp**. If it detects a new minute, it **resets the used quota to zero**.
 2. **Load Balancing Logic**: The function selects the **endpoint with the highest available quota** and routes the request accordingly.
@@ -49,31 +51,29 @@ The **Smart Load Balancer** provides an **automated solution** to these challeng
 
 ---
 
-The following sections detail the **step-by-step process** for deploying the Lambda function, integrating it with API Gateway, and testing the entire setup.
+## Step-by-Step Deployment Process
 
-## Step-by-Step Process
+**Step 1: Create DynamoDB Table**
 
-1. **Step 1: Create DynamoDB Table**
+**Step 2: Deploy the Lambda Function**
 
-2. **Step 2: Deploy the Lambda Function**
+**Step 3: Create API Gateway**
 
-4. **Step 3: Create API Gateway**
+**Step 4: Get the Root Resource ID**
 
-5. **Step 4: Get the Root Resource ID**
+**Step 5: Create a New Resource under Root**
 
-6. **Step 5: Create a New Resource under Root**
+**Step 6: Set Up the POST Method**
 
-7. **Step 6: Set Up the POST Method**
+**Step 7: Integrate Lambda with API Gateway**
 
-8. **Step 7: Integrate Lambda with API Gateway**
+**Step 8: Grant API Gateway Permission to Invoke Lambda**
 
-9. **Step 8: Grant API Gateway Permission to Invoke Lambda**
+**Step 9: Deploy the API**
 
-10. **Step 9: Deploy the API**
+**Step 10: Get the API URL**
 
-11. **Step 10: Get the API URL**
-
-12. **Step 11: Test the API**
+**Step 11: Test the API**
 
 ---
 
@@ -202,8 +202,6 @@ These commands create two sample regions (`us-east-1` and `us-west-2`) with init
    aws iam get-role --role-name LambdaExecutionRole
    aws iam get-role-policy --role-name LambdaExecutionRole --policy-name LambdaPolicy
    ```
-
----
 
 6. **Deploy the Lambda Function with the Execution Role**
 

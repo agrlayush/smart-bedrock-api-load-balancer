@@ -53,10 +53,9 @@ The following sections detail the **step-by-step process** for deploying the Lam
 
 ## Step-by-Step Process
 
-1. **Step 0: Create DynamoDB Table**
+1. **Step 1: Create DynamoDB Table**
 
-2. **Step 1: Package and Deploy the Lambda Function**
-3. **Step 2: Create an IAM Policy for DynamoDB Access**
+2. **Step 2: Deploy the Lambda Function**
 
 4. **Step 3: Create API Gateway**
 
@@ -78,7 +77,7 @@ The following sections detail the **step-by-step process** for deploying the Lam
 
 ---
 
-### Step 0: Create DynamoDB Table
+### Step 1: Create DynamoDB Table
 
 Create a **DynamoDB table** to store the **quota tracking information** for each endpoint. Below is the AWS CLI command to create the table:
 
@@ -110,14 +109,7 @@ These commands create two sample regions (`us-east-1` and `us-west-2`) with init
 
 ---
 
-
-Good point! Below is a new step that details the **creation of the Lambda execution role** with all the required permissions. This step ensures the Lambda function has the ability to **invoke Bedrock models** and **read/write to the DynamoDB table**.
-
----
-
-## **Updated Step-by-Step Process with Lambda Execution Role Creation**
-
-### **Step 0.1: Create an IAM Role for Lambda Execution**
+### **Step 2: Deploy the Lambda Function**
 
 1. **Create a Trust Policy for Lambda Execution**  
    Save the following content into a file named `trust-policy.json`. This policy allows **AWS Lambda** to assume the role.
@@ -213,27 +205,27 @@ Good point! Below is a new step that details the **creation of the Lambda execut
 
 ---
 
-### **Step 1: Deploy the Lambda Function with the Execution Role**
+6. **Deploy the Lambda Function with the Execution Role**
 
-First, ensure your **Lambda function** code is packaged into a ZIP file. 
+    Ensure your **Lambda function** code is packaged into a ZIP file. 
 
-```bash
-zip function.zip lambda_function.py
-```
+    ```bash
+    zip function.zip lambda_function.py
+    ```
 
-Now that the **Lambda execution role** is created, you can use it while deploying the Lambda function. When you package and deploy the function, reference the **ARN** of the role you just created.
+    Now that the **Lambda execution role** is created, you can use it while deploying the Lambda function. When you package and deploy the function, reference the **ARN** of the role you just created.
 
-```bash
-aws lambda create-function \
-  --function-name SmartLoadBalancer \
-  --runtime python3.12 \
-  --role arn:aws:iam::ACCOUNT_ID:role/LambdaExecutionRole \
-  --handler lambda_function.lambda_handler \
-  --zip-file fileb://function.zip
-  --timeout 300
-```
+    ```bash
+    aws lambda create-function \
+    --function-name SmartLoadBalancer \
+    --runtime python3.12 \
+    --role arn:aws:iam::ACCOUNT_ID:role/LambdaExecutionRole \
+    --handler lambda_function.lambda_handler \
+    --zip-file fileb://function.zip
+    --timeout 300
+    ```
 
-Note: Replace `ACCOUNT_ID` and `LambdaExecutionRole` with your IAM role and account ID.
+    Note: Replace `ACCOUNT_ID` and `LambdaExecutionRole` with your IAM role and account ID.
 
 ---
 
@@ -383,6 +375,10 @@ curl -X POST https://abcd1234.execute-api.us-east-1.amazonaws.com/dev/invoke \
 
 ```
 
+Or you can use test_loadbalancer.py to test the implementation.
+```bash
+python3 test_loadbalancer.py
+```
 ---
 
 ## Conclusion
@@ -390,5 +386,3 @@ curl -X POST https://abcd1234.execute-api.us-east-1.amazonaws.com/dev/invoke \
 With these steps, you have successfully:
 - Created an API Gateway and linked it to your Lambda function.
 - Deployed the API and tested it using `curl`.
-
-This setup ensures your **Lambda function** will handle requests routed via **API Gateway**, enabling your smart load balancing logic.

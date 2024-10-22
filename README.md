@@ -379,9 +379,9 @@ python3 test_loadbalancer.py
 ```
 ---
 
-Note: This implementation have an added cost over your Bedrock cost.
+Note: This implementation have an added cost over Bedrock cost.
 Cost estimate for 1 million request with 15 seconds average latency per LLM request would be $21.23.
-https://calculator.aws/#/estimate?id=77e01e1326657456c257e6301d8a39e67f2c85b0
+[AWS Calculator](https://calculator.aws/#/estimate?id=77e01e1326657456c257e6301d8a39e67f2c85b0)
 
 
 ## Conclusion

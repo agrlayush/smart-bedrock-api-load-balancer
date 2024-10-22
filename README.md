@@ -53,27 +53,27 @@ Note: DynamoDB can be replaced with an in-memory db like ElastiCache.
 
 ## Step-by-Step Deployment Process
 
-**Step 1: Create DynamoDB Table**
+[**Step 1: Create DynamoDB Table**](#step-1-create-dynamodb-table)
 
-**Step 2: Deploy the Lambda Function**
+[**Step 2: Deploy the Lambda Function**](#step-2-deploy-the-lambda-function)
 
-**Step 3: Create API Gateway**
+[**Step 3: Create API Gateway**](#step-3-create-api-gateway)
 
-**Step 4: Get the Root Resource ID**
+[**Step 4: Get the Root Resource ID**](#step-4-get-the-root-resource-id)
 
-**Step 5: Create a New Resource under Root**
+[**Step 5: Create a New Resource under Root**](#step-5-create-a-new-resource-under-root)
 
-**Step 6: Set Up the POST Method**
+[**Step 6: Set Up the POST Method**](#step-6-set-up-the-post-method)
 
-**Step 7: Integrate Lambda with API Gateway**
+[**Step 7: Integrate Lambda with API Gateway**](#step-7-integrate-lambda-with-api-gateway)
 
-**Step 8: Grant API Gateway Permission to Invoke Lambda**
+[**Step 8: Grant API Gateway Permission to Invoke Lambda**](#step-8-grant-api-gateway-permission-to-invoke-lambda)
 
-**Step 9: Deploy the API**
+[**Step 9: Deploy the API**](#step-9-deploy-the-api)
 
-**Step 10: Get the API URL**
+[**Step 10: Get the API URL**](#step-10-get-the-api-url)
 
-**Step 11: Test the API**
+[**Step 11: Test the API**](#step-11-test-the-api)
 
 ---
 
